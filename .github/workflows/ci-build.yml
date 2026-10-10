@@ -60,7 +60,7 @@ jobs:
           retention-days: 90
 
   linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -77,9 +77,29 @@ jobs:
             librsvg2-dev \
             libdbus-1-dev \
             pkg-config \
-            patchelf
+            patchelf \
+            squashfs-tools \
+            xvfb
+      - name: Prepare world-executable AppRun helper
+        run: |
+          set -euo pipefail
+          arch="$(uname -m)"
+          cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/tauri"
+          mkdir -p "$cache_dir"
+          curl -fL \
+            "https://github.com/tauri-apps/binary-releases/releases/download/apprun-old/AppRun-$arch" \
+            -o "$cache_dir/AppRun-$arch"
+          chmod 0755 "$cache_dir/AppRun-$arch"
+          test "$(stat -c '%a' "$cache_dir/AppRun-$arch")" = "755"
       - run: npm ci
       - run: npx tauri build --bundles appimage,deb,rpm
+      - name: Verify AppImage portability and startup
+        run: |
+          set -euo pipefail
+          appimage="$(find src-tauri/target/release/bundle/appimage -type f -name '*.AppImage' -print -quit)"
+          test -n "$appimage"
+          chmod 0755 "$appimage"
+          bash scripts/verify-appimage.sh "$appimage"
       - uses: actions/upload-artifact@v4
         with:
           name: qzonearchive-linux-${{ github.sha }}
