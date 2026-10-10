@@ -257,15 +257,30 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p nightly
-          cp artifacts/windows/*.exe nightly/QzoneArchive-nightly_x64-setup.exe
-          cp artifacts/macos-x64/*.dmg nightly/QzoneArchive-nightly_x64.dmg
-          cp artifacts/macos-arm64/*.dmg nightly/QzoneArchive-nightly_aarch64.dmg
-          cp artifacts/linux/*.AppImage nightly/QzoneArchive-nightly_amd64.AppImage
-          cp artifacts/linux/*.deb nightly/QzoneArchive-nightly_amd64.deb
-          cp artifacts/linux/*.rpm nightly/QzoneArchive-nightly_x86_64.rpm
-          cp artifacts/android/*.apk nightly/QzoneArchive-nightly-universal.apk
-          cp artifacts/ios-unsigned/*.ipa nightly/QzoneArchive-nightly-ios-arm64-unsigned.ipa
-          cp artifacts/nixos/*.tar.gz nightly/qzonearchive-nixos-nightly-x86_64-linux.tar.gz
+
+          copy_artifact() {
+            local source_root="$1"
+            local pattern="$2"
+            local destination="$3"
+            local source_path
+
+            source_path="$(find "$source_root" -type f -name "$pattern" -print -quit)"
+            if [ -z "$source_path" ]; then
+              echo "Artifact not found under $source_root: $pattern" >&2
+              exit 1
+            fi
+            cp "$source_path" "$destination"
+          }
+
+          copy_artifact artifacts/windows '*.exe' nightly/QzoneArchive-nightly_x64-setup.exe
+          copy_artifact artifacts/macos-x64 '*.dmg' nightly/QzoneArchive-nightly_x64.dmg
+          copy_artifact artifacts/macos-arm64 '*.dmg' nightly/QzoneArchive-nightly_aarch64.dmg
+          copy_artifact artifacts/linux '*.AppImage' nightly/QzoneArchive-nightly_amd64.AppImage
+          copy_artifact artifacts/linux '*.deb' nightly/QzoneArchive-nightly_amd64.deb
+          copy_artifact artifacts/linux '*.rpm' nightly/QzoneArchive-nightly_x86_64.rpm
+          copy_artifact artifacts/android '*.apk' nightly/QzoneArchive-nightly-universal.apk
+          copy_artifact artifacts/ios-unsigned '*.ipa' nightly/QzoneArchive-nightly-ios-arm64-unsigned.ipa
+          copy_artifact artifacts/nixos '*.tar.gz' nightly/qzonearchive-nixos-nightly-x86_64-linux.tar.gz
           ls -lh nightly
           gh release create nightly \
             --repo "$GITHUB_REPOSITORY" \
