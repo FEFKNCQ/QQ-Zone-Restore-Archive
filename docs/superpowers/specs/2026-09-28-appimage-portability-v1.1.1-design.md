@@ -2,7 +2,7 @@
 
 ## Goal
 
-Publish a traceable `v1.1.1` patch release with complete platform assets while fixing the Linux AppImage launcher permissions and lowering the Linux glibc baseline. The release must fail before publication if the AppImage contains an inaccessible launcher or cannot start in the AppImage catalog's sandbox model.
+Publish a traceable `v1.1.1` patch release with complete platform assets while fixing the Linux AppImage launcher permissions, lowering the Linux glibc baseline, and correcting the archive fallbacks reported in issue #8. The release must fail before publication if the AppImage contains an inaccessible launcher or cannot start in the AppImage catalog's sandbox model.
 
 ## Confirmed failure
 
@@ -52,7 +52,13 @@ The release must contain the same platform coverage as `v1.1.0`:
 - unsigned iOS arm64 IPA;
 - NixOS x86_64 archive.
 
-Release notes describe the Linux packaging correction without changing the application's archive behavior or user data format.
+Release notes describe the Linux packaging correction and the archive fallback changes. The local database schema and existing user data format remain unchanged.
+
+## Archive fallback update
+
+The mobile interaction endpoint may return a Tencent WAF 501 page even while authenticated desktop endpoints remain usable. This exact response is treated as an unavailable optional interaction channel after current visible moments and legacy history have been attempted; it no longer discards successful desktop-channel work or marks the entire task as failed.
+
+Legacy history parsing requires the current account nickname to distinguish the account's original post text from notification text. When the visible-moment response cannot provide that nickname, the archive task resolves the owner UIN through `cgi_get_portrait.fcg` before parsing history cards. If the nickname still cannot be established, the history channel reports a specific safety error instead of silently counting scanned cards while writing zero rows.
 
 ## GitHub and AppImage catalog follow-up
 
