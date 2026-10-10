@@ -10,7 +10,7 @@ appimage="$1"
 test -f "$appimage"
 test -x "$appimage"
 
-offset="$($appimage --appimage-offset)"
+offset="$("$appimage" --appimage-offset)"
 if ! [[ "$offset" =~ ^[0-9]+$ ]] || [ "$offset" -le 0 ]; then
   echo "Unable to read the type-2 AppImage SquashFS offset." >&2
   exit 1
