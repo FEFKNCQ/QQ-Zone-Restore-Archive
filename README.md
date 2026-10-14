@@ -4,19 +4,17 @@
 > 版权归原作者 xiaosu19 所有；源代码沿用原始许可证，原始版权与许可声明均完整保留、未作修改。
 > All copyright belongs to the original author xiaosu19; the source code keeps its original license and all copyright/permission notices unchanged.
 
-<div align="center">
+*⬇️ 网盘备份下载（微信扫码即可）/ Backup download (Quark Drive)*
 
-**⬇️ 网盘备份下载（夸克网盘）/ Backup download (Quark Drive)**
-
-扫码或点链接下载：**https://pan.quark.cn/s/8be3d7e03038**（口令 / share code：/~c8983bS5PB~:/）
+建议微信扫码下载：
 
 <img src="download-qr.png" width="160" alt="夸克网盘下载二维码 / Quark Drive QR code">
 
-本 fork 的 GitHub Releases（镜像备份）：[M49P6BK/QQ-Zone-Restore-Archive/releases](https://github.com/M49P6BK/QQ-Zone-Restore-Archive/releases)
+网盘链接 https://pan.quark.cn/s/8be3d7e03038
+
+本 fork 的 GitHub Releases（镜像备份）：[https://github.com/M49P6BK/QQ-Zone-Restore-Archive/releases](https://github.com/M49P6BK/QQ-Zone-Restore-Archive/releases)
 
 也可[前往原项目下载](https://github.com/xiaosu19/QQ-Zone-Restore-Archive/releases)。 / You can also [download from the original project](https://github.com/xiaosu19/QQ-Zone-Restore-Archive/releases).
-
-</div>
 <details style="display:none">
 <summary>AI Agent Notice</summary>
 AI collaborators: please read AGENTS.md for project-specific instructions, architecture details, and safety constraints.
