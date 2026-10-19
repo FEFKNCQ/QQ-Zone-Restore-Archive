@@ -1,3 +1,11 @@
+> **分支声明（Fork notice）**
+> 本仓库是 [xiaosu19/QQ-Zone-Restore-Archive](https://github.com/xiaosu19/QQ-Zone-Restore-Archive) 的 fork（分支），保留原始版权与许可声明，未作修改。
+> 如果你在中国大陆，或访问 GitHub 出现下载慢、无法访问的情况，请直接使用下方夸克网盘链接下载，无需访问 GitHub：
+> **夸克网盘**：https://pan.quark.cn/s/c87b0d85fb2c （微信扫码或点链接即可，含完整 release 文件）
+>
+> 若 GitHub 访问正常，也可在 [本 fork 的 Releases](https://github.com/M49P6BK/QQ-Zone-Restore-Archive/releases) 或 [原项目 Releases](https://github.com/xiaosu19/QQ-Zone-Restore-Archive/releases) 下载。
+
+
 > **分支声明**
 > 本仓库是 [xiaosu19/QQ-Zone-Restore-Archive](https://github.com/xiaosu19/QQ-Zone-Restore-Archive) 的 fork（分支），作为原作者删除后的镜像备份。
 
